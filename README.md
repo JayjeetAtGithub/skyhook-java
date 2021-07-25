@@ -2,18 +2,18 @@
 
 ### Running Instructions
 1. Clone the repository.
-```aidl
+```bash
 git clone https://github.com/JayjeetAtGithub/skyhook-java
 ```
 
 1. Build the Application.
-```aidl
+```bash
 cd skyhook-java/
 ./gradlew shadowJar
 ```
 
 2. Run the JAR.
-```aidl
+```bash
 java -jar app/build/libs/app-1.0-all.jar
 ```
 
