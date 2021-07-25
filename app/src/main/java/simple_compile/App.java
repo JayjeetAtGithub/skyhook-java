@@ -13,5 +13,9 @@ class App {
         BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
         FileSystemDatasetFactory factory = new FileSystemDatasetFactory(allocator, NativeMemoryPool.getDefault(),
                 FileFormat.PARQUET, "file:///path/to/a/sample.paret");
+        NativeDataset dataset = factory.finish();
+        String[] cols = new String[0];
+        NativeScanner scanner = dataset.newScan(new ScanOptions(cols, 100000));
+        System.out.println(scanner.schema().toString());
     }
 }
