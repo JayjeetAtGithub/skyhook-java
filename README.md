@@ -19,4 +19,4 @@ java -jar app/build/libs/app-1.0-all.jar
 
 ### Credits
 
-Thanks to [@Sebastiaan-Alvarez-Rodriguez](https://github.com/Sebastiaan-Alvarez-Rodriguez) for providing the aweosme code to build an all-in-one JAR.
+Thanks to [@Sebastiaan-Alvarez-Rodriguez](https://github.com/Sebastiaan-Alvarez-Rodriguez) for providing this awesome code to build an all-in-one JAR.
