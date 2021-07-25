@@ -10,7 +10,7 @@ repositories {
 //        Use The 3 lines below if you compiled arrow dependencies somewhere else, and want to compile against those now.
 //        Of course, you will have to provide an *absolute path* to where you have stored these jars on your filesystem.
         flatDir {
-            dirs '/Users/jayjeetchakraborty/skyhook/arrow/java/dataset/target'
+            dirs '/tmp/arrow/java/dataset/target'
         }
         mavenLocal()
         mavenCentral()
