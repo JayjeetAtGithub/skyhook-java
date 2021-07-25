@@ -1,0 +1,11 @@
+//main
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+}
+
+
+allprojects {
+    group 'org.jayjeet'
+    version '1.0'
+}
