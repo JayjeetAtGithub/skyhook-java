@@ -1,5 +1,6 @@
 package skyhook;
 
+import org.apache.arrow.dataset.file.JniWrapper;
 import org.apache.arrow.dataset.jni.*;
 import org.apache.arrow.memory.RootAllocator;
 import org.apache.arrow.memory.BufferAllocator;
@@ -35,23 +36,16 @@ class ArrowDatasetScanTask implements Runnable {
 
 class App {
     public static void main(String[] args) {
+        // Instatiate the Dataset
         BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
-        // Instantiate a Dataset
-        FileSystemDatasetFactory factory = new FileSystemDatasetFactory(
-                allocator,
-                NativeMemoryPool.getDefault(),
-                FileFormat.PARQUET,
-                "file:///mnt/cephfs/dataset"
-        );
+        NativeMemoryPool memoryPool = NativeMemoryPool.getDefault();
+        NativeDatasetFactory factory = new NativeDatasetFactory(allocator, memoryPool, JniWrapper.get().makeFileSystemDatasetFactory("file:///mnt/cephfs/dataset", 0));
         NativeDataset dataset = factory.finish();
+        factory.close();
 
-        // Define the columns to read
+        // Define the columns to read and Create the Scanner
         String[] cols = new String[0];
-
-        // Create the ScanOptions
         ScanOptions scanOptions = new ScanOptions(cols, 1000000);
-
-        // Create the Scanner
         NativeScanner scanner = dataset.newScan(scanOptions);
 
         // Launch a parallel scan
