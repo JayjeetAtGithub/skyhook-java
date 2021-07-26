@@ -41,7 +41,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'simple_compile.App'
+    mainClass = 'skyhook.App'
 }
 
 
@@ -50,7 +50,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 /** Builds a full jar JAR, with all dependencies contained */
 shadowJar {
-    mainClassName='simple_compile.App'
+    mainClassName='skyhook.App'
     zip64(true)
     mergeServiceFiles()
     
@@ -58,14 +58,14 @@ shadowJar {
     manifest {
         attributes(
                 'Manifest-Version': 1.0,
-                'Main-Class': 'simple_compile.App'
+                'Main-Class': 'skyhook.App'
         )
     }
 }
 
 /** Builds a lightweight type JAR. You are responsible to provide all dependencies listed in the manifest `Class-Path` entry */
 task lightJar(type: ShadowJar) {
-    mainClassName='simple_compile.App'
+    mainClassName='skyhook.App'
     zip64(true)
     mergeServiceFiles()
 
@@ -77,7 +77,7 @@ task lightJar(type: ShadowJar) {
     manifest {
         attributes(
                 'Manifest-Version': 1.0,
-                'Main-Class': 'simple_compile.App',
+                'Main-Class': 'skyhook.App',
                 'Class-Path': 'scala-library-2.12.10.jar' //scala-reflect-2.12.10.jar scala-xml_2.12-1.2.0.jar'
         )
     }
@@ -93,7 +93,7 @@ jar {
     manifest {
         attributes(
                 'Manifest-Version': 1.0,
-                'Main-Class': 'simple_compile.App'
+                'Main-Class': 'skyhook.App'
         )
     }
 }
@@ -101,7 +101,7 @@ jar {
 
 application {
     // Define the main class for the application.
-    mainClass = 'simple_compile.App'
+    mainClass = 'skyhook.App'
 }
 
 
