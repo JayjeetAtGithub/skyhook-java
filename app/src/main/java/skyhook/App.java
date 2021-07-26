@@ -37,7 +37,7 @@ class App {
     public static void main(String[] args) {
         BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
         FileSystemDatasetFactory factory = new FileSystemDatasetFactory(allocator, NativeMemoryPool.getDefault(),
-                FileFormat.PARQUET, "file:///mnt/cephfs/dataset");
+                FileFormat.PARQUET, "/mnt/cephfs/dataset");
         NativeDataset dataset = factory.finish();
         String[] cols = new String[0];
         NativeScanner scanner = dataset.newScan(new ScanOptions(cols, 100000));
