@@ -36,12 +36,25 @@ class ArrowDatasetScanTask implements Runnable {
 class App {
     public static void main(String[] args) {
         BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
-        FileSystemDatasetFactory factory = new FileSystemDatasetFactory(allocator, NativeMemoryPool.getDefault(),
-                FileFormat.PARQUET, "/mnt/cephfs/dataset");
+        // Instantiate a Dataset
+        FileSystemDatasetFactory factory = new FileSystemDatasetFactory(
+                allocator,
+                NativeMemoryPool.getDefault(),
+                FileFormat.PARQUET,
+                "file:///mnt/cephfs/dataset"
+        );
         NativeDataset dataset = factory.finish();
+
+        // Define the columns to read
         String[] cols = new String[0];
-        NativeScanner scanner = dataset.newScan(new ScanOptions(cols, 100000));
-        System.out.println(scanner.schema().toString());
+
+        // Create the ScanOptions
+        ScanOptions scanOptions = new ScanOptions(cols, 1000000);
+
+        // Create the Scanner
+        NativeScanner scanner = dataset.newScan(scanOptions);
+
+        // Launch a parallel scan
         launchScan(scanner);
     }
 
