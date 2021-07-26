@@ -39,7 +39,8 @@ class App {
         // Instatiate the Dataset
         BufferAllocator allocator = new RootAllocator(Long.MAX_VALUE);
         NativeMemoryPool memoryPool = NativeMemoryPool.getDefault();
-        NativeDatasetFactory factory = new NativeDatasetFactory(allocator, memoryPool, JniWrapper.get().makeFileSystemDatasetFactory("file:///mnt/cephfs/dataset", 0));
+        String path = "file:///mnt/cephfs/dataset";
+        NativeDatasetFactory factory = new NativeDatasetFactory(allocator, memoryPool, JniWrapper.get().makeFileSystemDatasetFactory(path, 0));
         NativeDataset dataset = factory.finish();
         factory.close();
 
